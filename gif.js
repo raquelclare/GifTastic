@@ -52,27 +52,55 @@ function displayFood() {
     })
     // After the data comes back from the API
     .done(function(response) {
-    	// Setting results to the data received from the ajax call
+    	// Setting results to the data received from the ajax call. This is the data key
     	var results = response.data;
     	// Looping through the JSON to locate and render rating
     	for (var i = 0; results.length; i++) {
-    		var gifDiv = $("<div class='item'>");
-    		var rating = results.rating;
-    		var p = $("<p>").text("Rating: " + rating);
 
+    		// Creating new div so that each food has their own div
+    		var gifDiv = $("<div class='gif'>");
+    		// Variable grabbing the rating of the gif
+    		var rating = results[i].rating;
+    		// Adding text to display the rating on the page
+    		var p = $("<p>").text("Rating: " + rating);
+    		// Dynamically creating an image element to display the image that we will pull
     		var foodImage = $("<img>");
+
+    		// Applying an attribute to foodImage so that an image will be assigned
+    		foodImage.attr("src", results[i].images.fixed_height_still.url);
+    		// Applying a data-still attribute equal to still gif
+    		foodImage.attr("data-still", results[i].images.fixed_height_still.url);
+    		// Applying a data-animate attribute equal to moving gif
+    		foodImage.attr("data-animate", results[i].images.fixed_height.url);
+    		// Applying data-state attribute equal to still
+    		foodImage.attr("data-state", "still");
     		
-    		foodImage.attr("src", results[i].images.fixed_height.url);
-    		// results[i].images.fixed_height_still.url
+    		// Prepends the rating text into gifDiv
     		gifDiv.prepend(p);
+    		// Prepends image of foodImage into gifDiv, rating will appear under
  			gifDiv.prepend(foodImage);
 
+ 			// Prepends each gifDiv 
     		$("#gifs").prepend(gifDiv);  	
     	}
     })
-
 }
 
+// Function to have the gif move/stop upon clicking
+function move() {
+// $(".item").on("click", function() {
+	var state = $(this).attr("data-state");
+	// console.log(this);
+
+	if (state === "still"){
+		$(this).attr("src", $(this).attr("data-animate"));
+		$(this).attr("data-state", "animate");
+	} else {
+		$(this).attr("src", $(this).attr("data-still"));
+		$(this).attr("data-state", "still");
+	}
+	console.log(this);
+}
 
 //===== Do the above before moving on =====
 
@@ -96,8 +124,10 @@ $("#addButton").on("click", function(event) {
 
 renderButtons();
 
-// Adding click even listeners to all elements with a class of food
+// Adding click event listeners to all elements with a class of food
 // Any click on the DOM propogates up and sees if there is a .food class attached
 $(document).on("click", ".food", displayFood);
+// Adding click event listeners to all elements with a class of item
+$(document).on("click", ".gif", move);
 
 
