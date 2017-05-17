@@ -35,6 +35,8 @@ function renderButtons () {
 
 var apiKey = "dc6zaTOxFJmzC";
 	
+
+// $(".food").on("click", function(event) {
 function displayFood() {
 	
 	// Creating a variable for each item in my topics array and grabbing their value
@@ -81,14 +83,17 @@ function displayFood() {
  			gifDiv.prepend(foodImage);
 
  			// Prepends each gifDiv 
-    		$("#gifs").prepend(gifDiv);  	
+    		$("#gifs").prepend(gifDiv); 
+
     	}
     })
 }
 
+// ISSUE: The data-state is updating but the src is not
 // Function to have the gif move/stop upon clicking
 function move() {
 // $(".item").on("click", function() {
+
 	var state = $(this).attr("data-state");
 	// console.log(this);
 

@@ -2,25 +2,40 @@
 <html lang="en-us">
 <head>
 	<title>GifTastic</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
-	<header></header>
+	<div class="container">
 
-	<div id="food-buttons">
-		
-	</div>
+		<div class="row">
+			<div class="col-md-3">
+			<header><strong>GifTastic!</strong></header><br>
+			</div>
+		</div>
 
-	<form id="food-form">
-		<label for="food-input">Add a button!</label>
-		<input type="text" id="food-input"><br>
+		<div class="row">
+			<div class="col-md-3">
+				
+				<div id="food-buttons"></div><br>
+				<form id="food-form">
+					<label for="food-input">Add a button!</label>
+					<input type="text" id="food-input"><br><br>
 
-		<!-- Button triggers new food to be added -->
-		<input id="addButton" type="submit" value="Submit">
-	</form>
+					<!-- Button triggers new food to be added -->
+					<input class="btn btn-default" id="addButton" type="submit" value="Submit">
+				</form>
+			</div>
+			
+			<div class="col-md-9">
+				<div id="gifs">
+				</div>
+			</div>
+		</div>
 
-	<div id="gifs">
-		
+		</div>
+
 	</div>
 
 	<!-- jQuery -->
